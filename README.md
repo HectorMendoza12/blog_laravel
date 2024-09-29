@@ -8,42 +8,42 @@
    **git remote add origin {URL de tu repositorio en GitHub sin las llaves}**
 4. Verifica que el repositorio remoto esté correctamente configurado:
    **git remote -v**
-
-Este proyecto es un punto de partida. Puedes usarlo para crear tus propios desarrollos, aplicando personalizaciones y subiendo tus cambios a tu repositorio.
-
-
+   
 ## Ejecutar el proyecto de manera local
 
-Para iniciar el proyecto, usa el comando:
-**php artisan serve**
+Para comenzar, se deben habilitar las siguientes extensiones en el archivo php.ini eliminando el ; en ;extension=soap ;extension=gd ;extension=zip
 
----
+Ahora se debe configurar un token para utilizar el comando "composer update", este lo puedes configurar mediante el comando composer config --global github-oauth.github.com {Aqui_tu_token sin las llaves}
 
-## Subir cambios al repositorio de GitHub
+Ahora ejecuta el comando composer update
 
-Para subir cambios, sigue estos pasos:
+Por ultimo debes ejecutar las migraciones con el comando php artisan migrate, después los seeders
 
-1. Crea un branch con tu nombre y trabaja siempre en él.
-2. Asegúrate de que estás en tu branch verificándolo con: **git status**
-3. Cambia de branch usando: **git checkout {Nombre de tu branch sin las llaves}**
-4. Agrega los archivos cambiados con: **git add .** (o usa **git add {nombre de tu archivo sin las llaves}** para agregar archivos individualmente).
-5. Realiza un commit con un mensaje descriptivo de los cambios: **git commit -m "aquí va tu comentario de lo que hiciste"**
-6. Sube tus cambios a tu repositorio con: **git push origin {Nombre de tu branch sin las llaves}**
+Para iniciar el proyecto, usa el comando: php artisan serve
+# Proyecto de Blog
 
-Si te sale el error de que no sabe quién eres o de que te tienes que identificar usa:
-1. **git config user.name "Tu nombre de usuario"**
-2. **git config user.email "Tu email"**
+## Descripción
+Este proyecto es un blog desarrollado con Laravel que permite a los usuarios crear, editar y visualizar publicaciones. A continuación, se describen las características y funcionalidades implementadas.
 
----
+## Paso 1: Configuración inicial del proyecto
+Ejecuté las migraciones y seeders iniciales para establecer las tablas y datos básicos en la base de datos. Luego, creé una nueva migración para la tabla `posts`, que incluye los campos `title`, `content`, `author_id`, 'photo', 'likes_count' y `created_at`. Finalmente, utilicé seeders para poblar la tabla con 12 entradas.
 
-## Limpiar el cache del proyecto en caso de ser necesario
+## Paso 2: Relación entre modelos
+Definí la relación `belongsTo` en el modelo `Post` para asociar cada publicación con un autor (usuario). También implementé la relación `hasMany` en el modelo `User`, permitiendo que un autor tenga múltiples publicaciones.
 
-Ejecuta:
-**php artisan cache:clear**
+## Paso 3: Interacción con Eloquent
+Utilicé Eloquent en el controlador del blog para obtener la lista de publicaciones y sus autores, enviándolos a las vistas correspondientes. Implementé filtros por autor utilizando Eloquent scopes (llamados scopePorAutor y scopeOrdenarporFecha) y añadí la funcionalidad para ordenar las publicaciones por fecha y autor.
 
-## Mantener tu branch al día con main
+## Paso 4: Diseño modular con JavaScript y CSS
+Implementé un archivo JavaScript modular que maneja la funcionalidad interactiva, el cual es un botón de like en los posts interactivo.
 
-Desde tu branch, sincronízate con la rama principal usando:
-**git merge main**
-Luego, sube los cambios:
-**git push**
+## Paso 5: Integración de Ajax/fetch
+Implementé un sistema de carga de más publicaciones en la página principal utilizando la API de Ajax. Creé un botón "Cargar más" que permite realizar solicitudes sin necesidad de recargar la página, mostrando un indicador de carga mientras se recuperan las publicaciones adicionales.
+
+## Paso 6: Uso de Datatables
+En una vista separada (`/admin/posts`), implementé Datatables para listar todas las publicaciones, permitiendo buscar, ordenar y paginar los resultados. Así como editar y eliminar.
+
+## Paso 7: Almacenamiento en Laravel
+Agregué la funcionalidad para que los usuarios suban imágenes junto con cada publicación. Utilicé el sistema de almacenamiento de archivos de Laravel para guardar las imágenes en el servidor, almacenando la ruta correspondiente en la base de datos y mostrando la imagen junto a cada publicación.
+
+
