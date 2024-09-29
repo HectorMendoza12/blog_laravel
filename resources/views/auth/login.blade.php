@@ -1,10 +1,10 @@
-<title>DCJ - CFE</title>
+<title>Inicio de sesión</title>
 <x-guest-layout>
     <x-jet-authentication-card>
-        <h2 class="text-center text-2xl">Nombre de tu Sistema</h2>
+        <h2 class="text-center text-2xl">Tablón del espectador</h2>
         <x-slot name="logo">
             {{-- <x-jet-authentication-card-logo /> --}}
-            <img src="{{ asset('assets/cfe.png') }}" alt="CFE" width="130" height="130"/>
+            <img src="{{ asset('assets/logoTab.png') }}" width="160" height="160"/>
 
         </x-slot>
 

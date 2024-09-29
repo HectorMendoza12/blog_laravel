@@ -7,7 +7,9 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "composer-install": "composer install",
+        "composer-update": "composer update"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.4.0",
@@ -26,6 +28,17 @@
     "dependencies": {
         "aos": "^2.3.4",
         "composer": "^4.1.0",
+        "datatables.net-dt": "^2.1.7",
         "pikaday": "^1.8.2"
-    }
+    },
+    "name": "proyectobase",
+    "version": "1.0.0",
+    "description": "1. Clona el repositorio de este proyecto base:\r    **git clone {link del repo sin las llaves}**\r 2. Accede a la carpeta del proyecto clonado.\r 3. Conecta tu proyecto a tu propio repositorio en GitHub:\r    **git remote add origin {URL de tu repositorio en GitHub sin las llaves}**\r 4. Verifica que el repositorio remoto esté correctamente configurado:\r    **git remote -v**",
+    "main": "tailwind.config.js",
+    "directories": {
+        "test": "tests"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
 }

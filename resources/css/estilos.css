@@ -2353,3 +2353,20 @@
       div.h4 {
         line-height: 1rem;
       }
+
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+body.light {
+  background-color: white;
+  color: black;
+}
+
+body.dark {
+  background-color: #121212; /* Color de fondo oscuro */
+  color: white; /* Color de texto claro */
+}
+

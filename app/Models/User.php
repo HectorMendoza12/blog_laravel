@@ -13,6 +13,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -73,13 +74,9 @@ class User extends Authenticatable
         return $this->hasOne(Datosuser::class, 'rpe', 'rpe');
     }
 
-    public function salud()
+    public function publicaciones()
     {
-        return $this->hasMany(MiSalud::class, 'rpe', 'rpe');
+        return $this->hasMany(Post::class, 'author_id', 'id');
     }
 
-    public function enfermedadesCronicas()
-    {
-        return $this->hasMany(usuario_enfermedad::class, 'rpe', 'rpe');
-    }
 }

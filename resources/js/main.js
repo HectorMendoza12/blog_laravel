@@ -4,6 +4,15 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
+import { initializeLikes } from './likeButtons.js';
+import { setupThemeSwitcher } from './themeSwitcher.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  initializeLikes();
+  setupThemeSwitcher();
+});
+
 (function() {
   "use strict";
 

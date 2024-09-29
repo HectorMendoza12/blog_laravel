@@ -7,6 +7,9 @@ use App\Http\Controllers\SoporteController;
 use App\Http\Controllers\EntregaRecepcionController;
 use App\Http\Controllers\ForceChangeDefaultPasswordController as FCDP;
 use App\Http\Controllers\UsuarioPendienteController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\AdminPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +30,11 @@ Route::get('/csrf-token', function () {
     return response()->json(['token' => $token]);
 });
 
-// Cambiar contraseñas por defecto
+Route::resource('post', PostController::class);
+Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('posts.likes.store');
+Route::get('/posts', [PostController::class, 'index'])->name('post.index');
+Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin.posts');
+
 Route::get('/actualizar-contraseña', [FCDP::class, 'index'])->middleware('auth')->name('change.password');
 Route::post('/actualizar-contraseña', [FCDP::class, 'Check'])->name('check.code');
 Route::put('/actualizar-contraseña', [FCDP::class, 'ChangePassword'])->name('change.password.default');

@@ -84,14 +84,14 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard.index') }}">
                         {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
-                        <img src="{{ asset('assets/cfe.png') }}" alt="CFE" width="115" height="115" />
+                        <img src="{{ asset('assets/logoTab.png') }}" alt="CFE" width="125" height="125" />
 
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="MENU">
-                    <div class="hidden space-x-8 sm:flex sm:items-center sm:ml-1 justify-between h-16">
+                    <div class="hidden space-x-3 sm:flex sm:items-center sm:ml-1 justify-between h-16">
                         <!-- Control interno -->
                         @if (Auth::user()->hasAnyRole(['admin', 'RecursosHumanos', 'JefeRecursosHumanos']))
                             <div class="group inline-block" align="left" width="30">
@@ -195,9 +195,36 @@
                                 </ul>
                             </div>
                         @endif
-
-
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <div class="hidden sm:flex sm:items-center sm:ml-6" > </div>
+                        <div class="group inline-block" align="left" width="30">
+                            <button class="outline-none focus:outline-none px-3 py-1 bg-white rounded-sm flex items-center min-w-32">
+                                <span class="pr-1 font-semibold flex-1">Blogs</span>
+                                <span>
+                                    <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180 transition duration-150 ease-in-out"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                    </svg>
+                                </span>
+                            </button>
+                            <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top min-w-32">
+                                <!-- Ver posts -->
+                                <li class="px-3 py-1 hover:bg-gray-100">
+                                    <a href="{{ route('post.index') }}">Ver posts</a>
+                                </li>
+                                <!-- Crear posts -->
+                                <li class="px-3 py-1 hover:bg-gray-100">
+                                    <a href="{{ route('post.create') }}">Crear nuevo post</a>
+                                </li>
+                                <!-- Gestionar posts: Solo para admins -->
+                                @if (Auth::user()->hasAnyRole(['admin', 'RecursosHumanos', 'JefeRecursosHumanos']))
+                                    <li class="px-3 py-1 hover:bg-gray-100">
+                                        <a href="{{ route('admin.posts') }}">Gestionar posts</a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                        
+                        
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">
@@ -315,7 +342,7 @@
                                 <x-jet-dropdown-link href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    {{ __('Cerrar') }}
+                                    {{ __('Cerrar sesión') }}
                                 </x-jet-dropdown-link>
                             </form>
                         </x-slot>
